@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Nova inscrição{% endblock %}
+{% block content %}
+  <h1>Nova inscrição</h1>
+  <form method="post" novalidate>
+    {{ form.csrf_token }}
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label">{{ form.cpf.label }}</label>
+        {{ form.cpf(class_='form-control', placeholder='000.000.000-00') }}
+        {% for err in form.cpf.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+      <div class="col-md-8">
+        <label class="form-label">{{ form.nome.label }}</label>
+        {{ form.nome(class_='form-control') }}
+        {% for err in form.nome.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label class="form-label">{{ form.estado_civil.label }}</label>
+        {{ form.estado_civil(class_='form-select') }}
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">{{ form.sexo.label }}</label>
+        {{ form.sexo(class_='form-select') }}
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">{{ form.data_nascimento.label }}</label>
+        {{ form.data_nascimento(class_='form-control', placeholder='YYYY-MM-DD') }}
+      </div>
+      <div class="col-md-3 d-flex align-items-end">
+        <div class="form-check">
+          {{ form.chefe_de_equipe(class_='form-check-input') }}
+          <label class="form-check-label">Chefe de equipe</label>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ form.endereco.label }}</label>
+      {{ form.endereco(class_='form-control') }}
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="form-label">{{ form.bairro.label }}</label>
+        {{ form.bairro(class_='form-control') }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.cidade_estado.label }}</label>
+        {{ form.cidade_estado(class_='form-control') }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.telefone.label }}</label>
+        {{ form.telefone(class_='form-control') }}
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">{{ form.submit.label.text }}</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Inscritos{% endblock %}
+{% block content %}
+  <h1>Inscritos</h1>
+  <p class="text-end"><a href="{{ url_for('logout') }}" class="btn btn-sm btn-outline-secondary">Sair</a></p>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Chefe?</th>
+        <th>Criado em</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in registros %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.cpf }}</td>
+        <td>{{ r.nome }}</td>
+        <td>{{ r.idade or '' }}</td>
+        <td>{{ 'Sim' if r.chefe_de_equipe else 'Não' }}</td>
+        <td>{{ r.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
